@@ -5,6 +5,11 @@
 # For example, `TaskActions.load` everntually yields either
 # `TaskActions.loaded` or `TaskActions.FAILED`
 
+# 1. open -a Google\ Chrome --args --allow-file-access-from-files --disable-web-security
+# 2. Log in to https://tutor-qa.openstax.org
+# 3. Open http://localhost:3001 (log in there just so you can get to the JS)
+URL_PREFIX = prompt('What should the hostname be?', 'https://tutor-qa.openstax.org')
+
 $ = require 'jquery'
 _ = require 'underscore'
 {TimeActions} = require './flux/time'
@@ -102,7 +107,7 @@ apiHelper = (Actions, listenAction, successAction, httpMethod, pathMaker) ->
             msg = jqXhr.responseText
           Actions.FAILED(statusCode, msg, args...)
 
-      $.ajax(url, opts)
+      $.ajax("#{URL_PREFIX}#{url}", opts)
       .then(resolved, rejected)
 
 
