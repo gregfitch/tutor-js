@@ -110,6 +110,17 @@ TutorDateInput = React.createClass
   expandCalendar: ->
     @setState({expandCalendar: true, hasFocus: true})
 
+  triggerExpandCalendar: ->
+    return if @props.disabled
+    dateInput = @refs.picker.getDOMNode().querySelector('input')
+
+    if @state.hasFocus
+      dateInput.blur()
+      @onBlur()
+    else
+      dateInput.focus()
+      @expandCalendar()
+
   isValid: (value) ->
     valid = true
     valid = false if (@props.min and value.isBefore(@props.min, 'day'))
@@ -187,7 +198,7 @@ TutorDateInput = React.createClass
 
       <div className="date-wrapper">
         {dateElem}
-        <i className="fa fa-calendar"></i>
+        <i className="fa fa-calendar" onClick={@triggerExpandCalendar}></i>
       </div>
     </div>
 
