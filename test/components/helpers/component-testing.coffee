@@ -11,7 +11,8 @@ sandbox = null
 ROUTER = null
 CURRENT_ROUTER_PARAMS = null
 CURRENT_ROUTER_PATH   = null
-CURRENT_ROUTER_QUERY = null
+CURRENT_ROUTER_QUERY  = null
+
 # Mock a router for the context
 beforeEach ->
   sandbox = sinon.sandbox.create()
